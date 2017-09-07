@@ -1,13 +1,16 @@
-<table>
-  <tr>
-    <th> Name </th>
-    <th> Email </th>
-  </tr>
-     <ng-container *ngFor="let country of lstCountries">
-
-         <tr>
-            <td> {{ country.name }} </td>
-            <td> {{ country.email }} </td>
-         </tr>
-     </ng-container>
-</table>
+<div class="row">
+    <table>
+        <tr>
+          <th> Name </th>
+          <th> Email </th>
+        </tr>
+           <ng-container *ngFor="let country of lstCountries">
+      
+               <tr>
+                  <td> {{ country.name }} </td>
+                  <td> {{ country.email }} </td>
+               </tr>
+           </ng-container>
+      </table>
+      
+</div>

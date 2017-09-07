@@ -1,0 +1,9 @@
+a.left-header-top {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 5px;
+    color: white;
+    font-size: 19px;
+    cursor: pointer;
+    font-style: arial;
+}
