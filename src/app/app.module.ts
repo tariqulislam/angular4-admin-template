@@ -9,6 +9,9 @@ import { MenuComponent } from './themes/menu/menu.component';
 import { WeatherComponent } from './weather/weather.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { SideMenu_Routing }  from './app.routing';
+import { DriverComponent } from './controller/driver/driver.component';
+import { DriverListComponent } from './controller/driver/driver-list/driver-list.component';
+import { DriverService } from './services/driver.service';
 
 
 
@@ -21,7 +24,9 @@ import { SideMenu_Routing }  from './app.routing';
     FooterComponent,
     MenuComponent,
     WeatherComponent,
-    CurrencyComponent
+    CurrencyComponent,
+    DriverComponent,
+    DriverListComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,7 @@ import { SideMenu_Routing }  from './app.routing';
     SideMenu_Routing
   
   ],
-  providers: [],
+  providers: [DriverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
