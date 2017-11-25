@@ -10,9 +10,13 @@ export class DriverListComponent implements OnInit {
   @Input() total;
   @Input() message;
 
-  constructor() { }
+  constructor() {
+  
+   }
 
   ngOnInit() {
+    debugger
+    const driv = this.drivers
   }
 
 }

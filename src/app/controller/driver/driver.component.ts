@@ -20,9 +20,10 @@ export class DriverComponent implements OnInit {
 
   getDrivers(): void {
     this.driverService.getDrivers().subscribe((results:any) => {
+      debugger
       this.drivers = results.driver;
       this.total = results.total;
-      this.message = results.message;  
+      this.message = "Get Driver List successfully";
     },(error:any) =>{
        this.drivers = [];
        this.total =0;
