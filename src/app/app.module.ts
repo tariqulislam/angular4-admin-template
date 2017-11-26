@@ -12,6 +12,9 @@ import { SideMenu_Routing }  from './app.routing';
 import { DriverComponent } from './controller/driver/driver.component';
 import { DriverListComponent } from './controller/driver/driver-list/driver-list.component';
 import { DriverService } from './services/driver.service';
+import { DriverDetailsComponent } from './controller/driver/driver-details/driver-details.component';
+import { DriverEditComponent } from './controller/driver/driver-edit/driver-edit.component';
+import { DriverAddComponent } from './controller/driver/driver-add/driver-add.component';
 
 
 
@@ -26,7 +29,10 @@ import { DriverService } from './services/driver.service';
     WeatherComponent,
     CurrencyComponent,
     DriverComponent,
-    DriverListComponent
+    DriverListComponent,
+    DriverDetailsComponent,
+    DriverEditComponent,
+    DriverAddComponent
   ],
   imports: [
     BrowserModule,

@@ -21,7 +21,7 @@ export class DriverComponent implements OnInit {
   getDrivers(): void {
     this.driverService.getDrivers().subscribe((results:any) => {
       debugger
-      this.drivers = results.driver;
+      this.drivers = results.drivers;
       this.total = results.total;
       this.message = "Get Driver List successfully";
     },(error:any) =>{

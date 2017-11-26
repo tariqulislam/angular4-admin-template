@@ -15,8 +15,6 @@ export class DriverListComponent implements OnInit {
    }
 
   ngOnInit() {
-    debugger
-    const driv = this.drivers
   }
 
 }
