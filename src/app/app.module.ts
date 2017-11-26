@@ -16,10 +16,6 @@ import { DriverDetailsComponent } from './controller/driver/driver-details/drive
 import { DriverEditComponent } from './controller/driver/driver-edit/driver-edit.component';
 import { DriverAddComponent } from './controller/driver/driver-add/driver-add.component';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +35,6 @@ import { DriverAddComponent } from './controller/driver/driver-add/driver-add.co
     FormsModule,
     HttpModule,
     SideMenu_Routing
-  
   ],
   providers: [DriverService],
   bootstrap: [AppComponent]
