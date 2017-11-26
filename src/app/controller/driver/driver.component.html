@@ -2,12 +2,13 @@
 <div class="row">
   <div class="box">
     <div class="box-header with-border">
-     <button class="btn btn-success btn-xs pull-right" (click) = "hideListEditDetailsPage();" >Add New Driver</button>
+     <button class="btn btn-primary btn-xs pull-left" (click)="showListofDriverPage();">Go Back To List</button>
+     <button class="btn btn-success btn-xs pull-right" (click) ="hideListEditDetailsPage();" >Add New Driver</button>
     </div>
     <!-- /.box-header -->
     <div class="box-body"> 
-      <app-driver-list [hideShowListPage] = "hideShowListPage" [drivers]="drivers" [total]="total" [message]="message"></app-driver-list>
-      <app-driver-add [hideShowAddPage] = "hideShowEditPage" ></app-driver-add>
+      <app-driver-list (driverEdit) ="onDriverEdit($event)" [hideShowListPage] = "hideShowListPage" [drivers]="drivers" [total]="total" [message]="message"></app-driver-list>
+      <app-driver-add [hideShowAddPage] ="hideShowAddPage" ></app-driver-add>
       <app-driver-edit [hideShowEditPage] = "hideShowEditPage" ></app-driver-edit>
     </div>
     <!-- /.box-body -->

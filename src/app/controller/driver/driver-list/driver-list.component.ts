@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-driver-list',
@@ -9,10 +9,17 @@ export class DriverListComponent implements OnInit {
   @Input() drivers;
   @Input() total;
   @Input() message;
+  @Input() hideShowListPage;
+  @Output() driverEdit: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   
-   }
+  }
+
+  getEditData(driver): void {
+    this.driverEdit.emit(driver)
+  }
+
 
   ngOnInit() {
   }
