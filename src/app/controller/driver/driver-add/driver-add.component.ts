@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-driver-add',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class DriverAddComponent implements OnInit {
+  @Input() hideShowAddPage;
 
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

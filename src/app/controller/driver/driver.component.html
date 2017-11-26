@@ -2,11 +2,13 @@
 <div class="row">
   <div class="box">
     <div class="box-header with-border">
-      <h3 class="box-title">Bordered Table</h3>
+     <button class="btn btn-success btn-xs pull-right" (click) = "hideListEditDetailsPage();" >Add New Driver</button>
     </div>
     <!-- /.box-header -->
-    <div class="box-body">
-      <app-driver-list [drivers]="drivers" [total]="total" [message]="message"></app-driver-list>
+    <div class="box-body"> 
+      <app-driver-list [hideShowListPage] = "hideShowListPage" [drivers]="drivers" [total]="total" [message]="message"></app-driver-list>
+      <app-driver-add [hideShowAddPage] = "hideShowEditPage" ></app-driver-add>
+      <app-driver-edit [hideShowEditPage] = "hideShowEditPage" ></app-driver-edit>
     </div>
     <!-- /.box-body -->
     <div class="box-footer clearfix">

@@ -8,6 +8,9 @@ import { Driver } from '../../models/driver'
   styles: []
 })
 export class DriverComponent implements OnInit {
+  hideShowListPage: Boolean = true;
+  hideShowAddPage: Boolean = false;
+  hideShowEditPage: Boolean = false;
   drivers : Array<Driver>;
   total: number;
   message: string;
@@ -16,6 +19,12 @@ export class DriverComponent implements OnInit {
 
   ngOnInit() {
     this.getDrivers();
+  }
+
+  hideListEditDetailsPage(): void {
+    this.hideShowListPage = false;
+    this.hideShowEditPage = false;
+    this.hideShowAddPage = true;
   }
 
   getDrivers(): void {
