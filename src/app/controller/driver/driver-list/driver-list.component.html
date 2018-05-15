@@ -1,0 +1,26 @@
+<table *ngIf="hideShowListPage" class="table table-bordered">
+  <thead>
+    <tr>
+      <th style="width: 10px">#</th>
+      <th> Phone Number</th>
+      <th>Email</th>
+      <th>First Name</th>
+      <th >Last Name</th>
+      <th> Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let driver of drivers">
+      <td>{{driver._id}}</td>
+      <td>{{driver.phone_no}}</td>
+      <td>{{ driver.email }}</td>
+      <td>
+        {{ driver.first_name }}
+      </td>
+      <td>{{ driver.last_name }}</td>
+      <td><button class="btn btn-success btn-xs" (click) = "getEditData(driver)">Edit</button>
+        <button class="btn btn-danger btn-xs">Delete</button>
+      </td>
+    </tr>
+  </tbody>  
+  </table>
