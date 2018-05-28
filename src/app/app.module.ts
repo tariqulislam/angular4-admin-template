@@ -7,12 +7,8 @@ import { HeaderComponent } from './themes/header/header.component';
 import { FooterComponent } from './themes/footer/footer.component';
 import { MenuComponent } from './themes/menu/menu.component';
 import { SideMenu_Routing }  from './app.routing';
-import { DriverComponent } from './controller/driver/driver.component';
-import { DriverListComponent } from './controller/driver/driver-list/driver-list.component';
-import { DriverService } from './services/driver.service';
-import { DriverDetailsComponent } from './controller/driver/driver-details/driver-details.component';
-import { DriverEditComponent } from './controller/driver/driver-edit/driver-edit.component';
-import { DriverAddComponent } from './controller/driver/driver-add/driver-add.component';
+import {UserService} from './services/user.service';
+import { UserComponent } from './controller/user/user.component'
 
 @NgModule({
   declarations: [
@@ -20,11 +16,7 @@ import { DriverAddComponent } from './controller/driver/driver-add/driver-add.co
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    DriverComponent,
-    DriverListComponent,
-    DriverDetailsComponent,
-    DriverEditComponent,
-    DriverAddComponent
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +24,7 @@ import { DriverAddComponent } from './controller/driver/driver-add/driver-add.co
     HttpModule,
     SideMenu_Routing
   ],
-  providers: [DriverService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
