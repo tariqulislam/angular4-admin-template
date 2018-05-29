@@ -1,9 +1,9 @@
 import {Routes, RouterModule } from '@angular/router';
-import { DriverComponent } from './controller/driver/driver.component';
+import { UserComponent } from './controller/user/user.component';
 
 const SideMenu_Route: Routes = [
-    { path: '', redirectTo: '/driver', pathMatch: 'full'},
-    { path: 'driver', component: DriverComponent}
+    { path: '', redirectTo: '/users', pathMatch: 'full'},
+    { path: 'users', component: UserComponent}
 ];
 
 export const SideMenu_Routing = RouterModule.forRoot(SideMenu_Route);

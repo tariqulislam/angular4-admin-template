@@ -153,3 +153,29 @@ import { UserComponent } from './controller/user/user.component'
 export class AppModule { }
 
 ```
+
+#### Consume the User Service and show the List view
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user.model';
+
+@Component({
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styles: []
+})
+export class UserComponent implements OnInit {
+
+  /* add the user array */
+  users: Array<User>;
+  
+  /* Inject the user service to component */
+  constructor(private userService: UserService) { }
+
+  ngOnInit() {
+
+  }
+
+}
+```
