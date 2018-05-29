@@ -17,6 +17,7 @@ import { UserComponent } from './controller/user/user.component'
     FooterComponent,
     MenuComponent,
     UserComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,8 @@ export class UserService {
 
   constructor(private http: Http) {}
   
-  private userApiUrl: string = `${ServiceConfig.apiUrl}users`
+  private userApiUrl: string = `${ServiceConfig.apiUrl}users`;
+  
 
   getUsers(): Observable<User[]> {
     return this.http.get(this.userApiUrl)
