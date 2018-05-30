@@ -8,7 +8,8 @@ import { FooterComponent } from './themes/footer/footer.component';
 import { MenuComponent } from './themes/menu/menu.component';
 import { SideMenu_Routing }  from './app.routing';
 import {UserService} from './services/user.service';
-import { UserComponent } from './controller/user/user.component'
+import { UserComponent } from './controller/user/user.component';
+import { UserListComponent } from './controller/user/user-list/user-list.component'
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { UserComponent } from './controller/user/user.component'
     FooterComponent,
     MenuComponent,
     UserComponent,
+    UserListComponent,
 
   ],
   imports: [

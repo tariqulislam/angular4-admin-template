@@ -10,6 +10,8 @@ import { User } from '../../models/user.model';
 export class UserComponent implements OnInit {
 
   users: Array<User>;
+  message:string;
+  output: string;
 
   constructor(private userService: UserService) { }
 
@@ -19,9 +21,14 @@ export class UserComponent implements OnInit {
 
   getUsers(): void {
      this.userService.getUsers().subscribe((result: any) => {
-       console.log(result);
+        this.users = result.data;
+        this.message = result.message;
+        this.output = result.statusType;
      }, (error: any) => {
        console.log(error);
+       this.users = [];
+       this.message = error.message;
+       this.output = error.statusType;
      });
   }
 

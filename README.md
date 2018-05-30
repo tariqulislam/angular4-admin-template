@@ -154,7 +154,7 @@ export class AppModule { }
 
 ```
 
-#### Consume the User Service and show the List view
+#### Consume the User Service and show the List view ```user.component.ts``` file
 ```javascript
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
@@ -167,15 +167,99 @@ import { User } from '../../models/user.model';
 })
 export class UserComponent implements OnInit {
 
-  /* add the user array */
   users: Array<User>;
-  
-  /* Inject the user service to component */
+  message:string;
+  output: string;
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.getUsers();
+  } 
 
+  getUsers(): void {
+     this.userService.getUsers().subscribe((result: any) => {
+        this.users = result.data;
+        this.message = result.message;
+        this.output = result.statusType;
+     }, (error: any) => {
+       console.log(error);
+       this.users = [];
+       this.message = error.message;
+       this.output = error.statusType;
+     });
   }
 
 }
 ```
+
+`getUsers()` is a function to subscribe the ```UserService``` result to component:
+
+```javascript
+
+```
+
+#### create the user List component (Sub Component)
+To create the sub component we will provide the command as like as component creating command:
+```javascript
+> ng generate component controller/user/user-list --spec false
+```
+When the command is execute, those file will be created:
+
+```
+create src\app\controller\user\user-list\user-list.component.css
+create src\app\controller\user\user-list\user-list.component.html
+create src\app\controller\user\user-list\user-list.component.ts
+update src\app\app.module.ts
+```
+
+Add the ```user-list``` component to ```user``` component. we can modify the ```user.component.html``` to:
+
+```html
+<div>
+  <app-user-list [users] ="users"></app-user-list>
+</div>
+```
+Then Input the user to ```user-list``` component by using ```Input()``` decorator to ```user-list``` component:
+```javascript
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.css']
+})
+export class UserListComponent implements OnInit {
+  @Input() users;
+
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+```
+
+### show the list to ```user-list.component.html``` file:
+```html
+<table class="table table-responsive table-bordered">
+  <thead>
+    <th>#</th>
+    <th>First Name:</th>
+    <th>Last Name:</th>
+    <th>Email:</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.id}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.email}}</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+
+
