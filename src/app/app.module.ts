@@ -9,7 +9,9 @@ import { MenuComponent } from './themes/menu/menu.component';
 import { SideMenu_Routing }  from './app.routing';
 import {UserService} from './services/user.service';
 import { UserComponent } from './controller/user/user.component';
-import { UserListComponent } from './controller/user/user-list/user-list.component'
+import { UserListComponent } from './controller/user/user-list/user-list.component';
+import { DriveAddComponent } from './controller/user/drive-add/drive-add.component';
+import { UserAddComponent } from './controller/user/user-add/user-add.component'
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { UserListComponent } from './controller/user/user-list/user-list.compone
     MenuComponent,
     UserComponent,
     UserListComponent,
+    DriveAddComponent,
+    UserAddComponent,
 
   ],
   imports: [

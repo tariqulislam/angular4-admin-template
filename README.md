@@ -1,9 +1,21 @@
 # Angular Admin Template
 
+## Prequsite
+1. @angular/cli@1.5.4
+
+## Special notes
+1. Uninstall existing the ```@angular/cli``` npm global package by ```npm uninstall -g @angular/cli```
+2. Install the ```@angular/cli@1.5.4``` globally by ```npm install -g @angular/cli@1.5.4```
+3. This angular admin template needs ```@angular/cli@1.5.4``` version to run 
+4. Remove exiting ```node_modules``` folder by ```rm -fr node_modules```
+5. Remove the existing ```package-lock.json``` file
+6. then install ```npm install```
+4. then run ```ng server``` to start project
+
 #### Create Model
 
 1. Create folder ```models``` 
-2. then create file <modelname>.model.ts
+2. then create file <modelname>.model.ts by ```ng g class models/<model name>```
 3. At <modelname>.model.ts, we can write code like
 ```javascript
 export class <modelName> {
@@ -62,11 +74,12 @@ Then add the service to provider array for whole application access:
     HttpModule,
     SideMenu_Routing
   ],
-  ```providers: [UserService]```,
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
+
 
 To access the http functionality and package we will add the Http modules at constructor of the service
 ```javascript
@@ -91,7 +104,7 @@ we will use ```http``` package and ```Observable``` to consume the get service f
  <function Name>() : Observable<ModelName> {
      return <Http Package>.get(<Api Url>)
                 .map((<Response>) => <Response>.json())
-                .catch((<Error>) => Observable.throw(<Error JSON))
+                .catch((<Error>) => Observable.throw(<ERROR_JSON))
  }
 ```
 ##### Example:
@@ -139,7 +152,7 @@ import { UserComponent } from './controller/user/user.component'
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-   ``` UserComponent,```
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -152,6 +165,11 @@ import { UserComponent } from './controller/user/user.component'
 })
 export class AppModule { }
 
+```
+
+we can add the service to ```app.module.ts``` file to ```provider``` block, example
+```javascript
+providers:[<Service Name>]
 ```
 
 #### Consume the User Service and show the List view ```user.component.ts``` file
@@ -231,13 +249,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
   @Input() users;
-
-
   constructor() { }
-
   ngOnInit() {
   }
-
 }
 ```
 
@@ -260,6 +274,37 @@ export class UserListComponent implements OnInit {
   </tbody>
 </table>
 ```
+
+## create the angular 4 From component to post data
+```javascript
+> ng g c controller/user/user-add --spec false 
+```
+This will create ```user-add``` folder and create 3 files and update the ```app.module.ts``` file for add the component to module 
+```
+create src/app/controller/user/user-add/user-add.component.css (0 bytes)
+create src/app/controller/user/user-add/user-add.component.html (27 bytes)
+create src/app/controller/user/user-add/user-add.component.ts (276 bytes)
+update src/app/app.module.ts (1238 bytes)
+```
+User add component ts file will look like
+```javascript
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-user-add',
+  templateUrl: './user-add.component.html',
+  styleUrls: ['./user-add.component.css']
+})
+export class UserAddComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+```
+Add the ```selector: app-user-add```  component to ```user.component.html``` file:
 
 
 
