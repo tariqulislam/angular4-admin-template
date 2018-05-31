@@ -19,9 +19,7 @@ export class UserAddComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
-    this.userCreate.emit(this.model)
-    console.log(this.model)
+    this.userCreate.emit(this.model);
   }
 
 }

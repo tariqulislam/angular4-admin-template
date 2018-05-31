@@ -305,6 +305,10 @@ export class UserAddComponent implements OnInit {
 }
 ```
 Add the ```selector: app-user-add```  component to ```user.component.html``` file:
+```html
+<app-user-add></app-user-add>
+```
+
 
 
 

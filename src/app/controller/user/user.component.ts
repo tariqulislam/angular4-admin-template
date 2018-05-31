@@ -11,7 +11,7 @@ export class UserComponent implements OnInit {
 
   users: Array<User>;
   message:string;
-  output: string;
+  statusType: string;
 
   constructor(private userService: UserService) { }
 
@@ -20,20 +20,26 @@ export class UserComponent implements OnInit {
   } 
 
   onSaveUser(user:User): void {
-    debugger
-    console.log("user", user);
+    this.userService.addUser(user).subscribe((result:any) => {
+        this.message = result.message;
+        this.statusType = result.statusType;
+        this.getUsers();
+    }, (error: any) => {
+        this.message = error.message;
+        this.statusType = error.statusType;
+    });
   }
 
   getUsers(): void {
      this.userService.getUsers().subscribe((result: any) => {
         this.users = result.data;
         this.message = result.message;
-        this.output = result.statusType;
+        this.statusType = result.statusType;
      }, (error: any) => {
        console.log(error);
        this.users = [];
        this.message = error.message;
-       this.output = error.statusType;
+       this.statusType = error.statusType;
      });
   }
 

@@ -19,4 +19,16 @@ export class UserService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server Error'))
   }
 
+  addUser(body:User): Observable<Object> {
+     const bodyString = JSON.stringify(body);
+     const headers = new Headers({'Content-Type': 'application/json'});
+     const options = new RequestOptions({headers: headers});
+
+     return this.http.post(this.userApiUrl,body,options)
+                    .map((res:Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server Error'))
+
+  }
+
+
 }
