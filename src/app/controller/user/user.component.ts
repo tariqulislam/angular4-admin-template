@@ -19,6 +19,11 @@ export class UserComponent implements OnInit {
     this.getUsers();
   } 
 
+  onSaveUser(user:User): void {
+    debugger
+    console.log("user", user);
+  }
+
   getUsers(): void {
      this.userService.getUsers().subscribe((result: any) => {
         this.users = result.data;
