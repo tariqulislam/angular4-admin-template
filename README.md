@@ -308,6 +308,35 @@ Add the ```selector: app-user-add```  component to ```user.component.html``` fil
 ```html
 <app-user-add></app-user-add>
 ```
+#### Design the Add from using bootstrap
+```html
+<div class="container">
+  <h1>User Add Form</h1>
+  <form (ngSubmit)= "onSubmit()" #userForm ="ngForm">
+    <div class="form-group">
+      <label for="name">First Name</label>
+      <input type="text" class="form-control" id="firstName" required
+      [(ngModel)] = "model.firstName" name="firstName"
+      />
+    </div>
+    <div class="form-group">
+        <label for="name">Last Name</label>
+        <input type="text" class="form-control" id="lastName" required 
+        [(ngModel)] ="model.lastName" name="lastName"
+        />
+      </div>
+      <div class="form-group">
+          <label for="name">Email</label>
+          <input type="text" class="form-control" id="firstName" required
+          [(ngModel)] = "model.email" name="email"
+          />
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+  </form>
+</div>
+```
+I will use the ng model ```[(ngModel)]``` for two way binding for template from to post data to server.
+We also use the ```EventEmitter``` to emit form post data ```user-list``` component to ```user``` component.
 
 
 
