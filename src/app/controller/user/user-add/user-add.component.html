@@ -1,23 +1,36 @@
 <div class="container">
   <h1>User Add Form</h1>
-  <form (ngSubmit)= "onSubmit()" #userForm ="ngForm">
+  <form (ngSubmit)= "onSubmit(userForm)" #userForm ="ngForm">
+
     <div class="form-group">
       <label for="name">First Name</label>
-      <input type="text" class="form-control" id="firstName" required
-      [(ngModel)] = "model.firstName" name="firstName"
+      <input type="text" #firstName="ngModel" class="form-control" id="firstName" required
+      [(ngModel)] = "user.firstName" name="firstName" minlength="5"
       />
+      <span  *ngIf="userForm.submitted && !isValidFormSubmitted" [ngClass] = "'error'">
+        First Name is required
+      </span>
+      <span *ngIf="userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+          Name must be at least 5 characters long.
+      </span>
     </div>
     <div class="form-group">
         <label for="name">Last Name</label>
-        <input type="text" class="form-control" id="lastName" required 
-        [(ngModel)] ="model.lastName" name="lastName"
+        <input type="text" #lastName="ngModel" class="form-control" id="lastName" required 
+        [(ngModel)] ="user.lastName" name="lastName"
         />
+        <span *ngIf="userForm.submitted && !isValidFormSubmitted" [ngClass]= "'error'">
+          Last Name is Required
+        </span>
       </div>
       <div class="form-group">
           <label for="name">Email</label>
-          <input type="text" class="form-control" id="firstName" required
-          [(ngModel)] = "model.email" name="email"
+          <input type="text" #email="ngModel" class="form-control" id="firstName" required
+          [(ngModel)] = "user.email" name="email"
           />
+          <span *ngIf="userForm.submitted && !isValidFormSubmitted" [ngClass]= "'error'">
+              Email is Required
+            </span>
         </div>
         <button type="submit" class="btn btn-success">Save</button>
   </form>
