@@ -347,7 +347,39 @@ Add the ```selector: app-user-add```  component to ```user.component.html``` fil
 ```
 I will use the ng model ```[(ngModel)]``` for two way binding for template from to post data to server.
 We also use the ```EventEmitter``` to emit form post data ```user-list``` component to ```user``` component.
+```javascript
+@Output() userCreate:  EventEmitter<any> = new EventEmitter();
+@Input() message: string;
+@Input() statusType: string;
+```
+Emit the function to ```user``` component by ```onSubmit``` method:
+```javascript
+  onSubmit() {
+     this.userCreate.emit(this.model);
+  }
+```
+At ```user``` component we will ```subscibe``` the create api service at ```user.component.ts```:
+```javascript
+  onSaveUser(user:User): void {
+    this.userService.addUser(user).subscribe((result:any) => {
+        this.message = result.message;
+        this.statusType = result.statusType;
+        this.getUsers();
+    }, (error: any) => {
+        this.message = error.message;
+        this.statusType = error.statusType;
+    });
+  }
+```
+We can consume the user save post service at ```user.service.ts``` file:
+```javascript
+addUser(body:User): Observable<Object> {
+     const bodyString = JSON.stringify(body);
+     const headers = new Headers({'Content-Type': 'application/json'});
+     const options = new RequestOptions({headers: headers});
 
-
-
-
+     return this.http.post(this.userApiUrl,body,options)
+                    .map((res:Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server Error'))
+}
+```
