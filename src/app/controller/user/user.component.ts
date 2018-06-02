@@ -32,8 +32,20 @@ export class UserComponent implements OnInit {
   }
 
   onEditUser(user:User): void {
-    debugger
     this.user = user;
+  }
+
+  onUpdateUser(user:User): void {
+  
+    this.userService.updateUser(user).subscribe((result:any) => {
+      this.message = result.message;
+      this.statusType = result.statusType;
+      new User(0, '', '', '');
+      this.getUsers();
+    }, (error: any) => {
+      this.message = error.message;
+      this.statusType= error.statusType;
+    })
   }
 
   getUsers(): void {

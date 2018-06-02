@@ -11,6 +11,7 @@ export class UserService {
   constructor(private http: Http) {}
   
   private userApiUrl: string = `${ServiceConfig.apiUrl}users`;
+
   
 
   getUsers(): Observable<User[]> {
@@ -24,10 +25,20 @@ export class UserService {
      const headers = new Headers({'Content-Type': 'application/json'});
      const options = new RequestOptions({headers: headers});
 
-     return this.http.post(this.userApiUrl,body,options)
+     return this.http.post(this.userApiUrl,bodyString,options)
                     .map((res:Response) => res.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server Error'))
 
+  }
+
+  updateUser(body:any): Observable<Object> {
+    const bodyString = JSON.stringify(body);
+
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const options = new RequestOptions({headers: headers});
+    return this.http.put(`${this.userApiUrl}/${body.id}`, bodyString, options)
+                    .map((res:Response) => res.json())
+                    .catch((error: any) => Observable.throw(error.json().error || 'server error'))
   }
 
 
