@@ -12,7 +12,7 @@ export class UserComponent implements OnInit {
   users: Array<User>;
   message:string;
   statusType: string;
-  onEditUserInfo: EventEmitter<any> = new EventEmitter();
+  user: User;
 
   constructor(private userService: UserService) { }
 
@@ -33,6 +33,7 @@ export class UserComponent implements OnInit {
 
   onEditUser(user:User): void {
     debugger
+    this.user = user;
   }
 
   getUsers(): void {

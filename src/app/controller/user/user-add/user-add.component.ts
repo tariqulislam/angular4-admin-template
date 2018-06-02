@@ -15,9 +15,6 @@ export class UserAddComponent implements OnInit {
 
   isValidFormSubmitted = null;
   user = new User(0,'','','');
-
- 
-
   constructor() { }
 
 
