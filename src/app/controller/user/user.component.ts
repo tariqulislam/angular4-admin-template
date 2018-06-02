@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
 
@@ -12,6 +12,7 @@ export class UserComponent implements OnInit {
   users: Array<User>;
   message:string;
   statusType: string;
+  onEditUserInfo: EventEmitter<any> = new EventEmitter();
 
   constructor(private userService: UserService) { }
 
@@ -28,6 +29,10 @@ export class UserComponent implements OnInit {
         this.message = error.message;
         this.statusType = error.statusType;
     });
+  }
+
+  onEditUser(user:User): void {
+    debugger
   }
 
   getUsers(): void {

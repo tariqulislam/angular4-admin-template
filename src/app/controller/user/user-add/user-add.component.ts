@@ -25,8 +25,6 @@ export class UserAddComponent implements OnInit {
     
   }
 
-  
-
   onSubmit(form: NgForm) {
     this.isValidFormSubmitted = false;
       if(form.invalid) {

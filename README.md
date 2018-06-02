@@ -383,3 +383,51 @@ addUser(body:User): Observable<Object> {
                     .catch((error:any) => Observable.throw(error.json().error || 'Server Error'))
 }
 ```
+#Template from Validation
+```html
+<div class="container">
+  <h1>User Add Form</h1>
+  <form (ngSubmit)= "onSubmit(userForm)" #userForm ="ngForm">
+
+    <div class="form-group">
+      <label for="name">First Name</label>
+      <input type="text" #firstName="ngModel" class="form-control" id="firstName" required
+      [(ngModel)] = "user.firstName" name="firstName" minlength="5"
+      />
+      <span  *ngIf="firstName.errors?.required && userForm.submitted && !isValidFormSubmitted" [ngClass] = "'error'">
+        First Name is required
+      </span>
+      <span *ngIf="firstName.errors?.minlength && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+          Name must be at least 5 characters long.
+      </span>
+    </div>
+    <div class="form-group">
+        <label for="name">Last Name</label>
+        <input type="text" #lastName="ngModel" class="form-control" id="lastName" required 
+        [(ngModel)] ="user.lastName" name="lastName"
+        />
+        <span *ngIf="lastName.errors?.required && userForm.submitted && !isValidFormSubmitted" [ngClass]= "'error'">
+          Last Name is Required
+        </span>
+      </div>
+      <div class="form-group">
+          <label for="name">Email</label>
+          <input type="text" #email="ngModel" class="form-control" id="firstName" required
+          [(ngModel)] = "user.email" name="email"
+          />
+          <span *ngIf="email.errors?.required && userForm.submitted && !isValidFormSubmitted" [ngClass]= "'error'">
+              Email is Required
+            </span>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+  </form>
+</div>
+```
+
+## Edit Data by angular 4
+
+  create src/app/controller/user/user-edit/user-edit.component.html (28 bytes)
+  create src/app/controller/user/user-edit/user-edit.component.spec.ts (643 bytes)
+  create src/app/controller/user/user-edit/user-edit.component.ts (280 bytes)
+  create src/app/controller/user/user-edit/user-edit.component.css (0 bytes)
+  update src/app/app.module.ts (1274 bytes)

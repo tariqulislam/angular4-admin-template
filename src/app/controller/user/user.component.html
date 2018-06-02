@@ -1,4 +1,5 @@
 <div>
   <app-user-add (userCreate)="onSaveUser($event)"></app-user-add>
-  <app-user-list [users] ="users"></app-user-list>
+  <app-user-list [users] ="users" (userEditInfo)="onEditUser($event)" ></app-user-list>
+  <app-user-edit></app-user-edit>
 </div>
