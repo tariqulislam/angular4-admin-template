@@ -1,21 +1,21 @@
 # Angular Admin Template
 
-## Prequsite
+## Prerequisite
 1. @angular/cli@1.5.4
 
 ## Special notes
-1. Uninstall existing the ```@angular/cli``` npm global package by ```npm uninstall -g @angular/cli```
+1. Uninstall existing  ```@angular/cli``` npm global package by ```npm uninstall -g @angular/cli```
 2. Install the ```@angular/cli@1.5.4``` globally by ```npm install -g @angular/cli@1.5.4```
 3. This angular admin template needs ```@angular/cli@1.5.4``` version to run 
-4. Remove exiting ```node_modules``` folder by ```rm -fr node_modules```
+4. Remove existing ```node_modules``` folder by ```rm -fr node_modules```
 5. Remove the existing ```package-lock.json``` file
-6. then install ```npm install```
-4. then run ```ng server``` to start project
+6. Then install ```npm install```
+4. Then run ```ng server``` to start project
 
 #### Create Model
 
 1. Create folder ```models``` 
-2. then create file <modelname>.model.ts by ```ng g class models/<model name>```
+2. Then create file <modelname>.model.ts by ```ng g class models/<model name>```
 3. At <modelname>.model.ts, we can write code like
 ```javascript
 export class <modelName> {
@@ -85,14 +85,14 @@ To access the http functionality and package we will add the Http modules at con
 ```javascript
  constructor(private http: Http) { }
 ```
-I have create the class for handling the common properties of service file ```service.config.ts``` which includes:
+I have created the class for handling the common properties of service file ```service.config.ts``` which includes:
 ```javascript
 export class ServiceConfig {
  static apiUrl: string = "http://localhost:3000/api/";
 }
 ```
 
-Add the Api Url from ```ServiceConfig``` for access the url of api service:
+Add the Api Url from ```ServiceConfig``` for accessing the url of api service:
 ```javascript
 private userApiUrl: string = `${ServiceConfig.apiUrl}/users`
 ```
@@ -118,11 +118,11 @@ getUsers(): Observable<User[]> {
 
 ## Create the Component
 
-Components are the most basic building block of an UI in an Angular application. An Angular application is a tree of Angular components. Angular components are a subset of directives. Unlike directives, components always have a template and only one component can be instantiated per an element in a template.
+Components are the most basic building block of an UI in an Angular application. An Angular application is a tree of Angular components. Angular components are a subset of directives. Unlike directives, components always have a template and only one component can be instantiated per element in a template.
 
-A component must belong to an NgModule in order for it to be usable by another component or application. To specify that a component is a member of an NgModule, you should list it in the declarations field of that NgModule.
+A component must belong to an NgModule in order to be usable by another component or application. To specify that a component is a member of an NgModule, you should list it in the declarations field of that NgModule.
 
-#### Command for create component
+#### Command to create component
 
 We will create two type of component ```flat``` component and ```module``` component. flat component are created at ```src``` root directory. module compoenent will create with folder with component name:
 
@@ -142,7 +142,7 @@ create src\app\controller\user\user.component.html
 create src\app\controller\user\user.component.ts
 update src\app\app.module.ts
 ```
-Component will automatically added to ```app.module.ts``` file:
+Component will be automatically added to ```app.module.ts``` file:
 ```javascript
 import { UserComponent } from './controller/user/user.component'
 
@@ -218,11 +218,11 @@ export class UserComponent implements OnInit {
 ```
 
 #### create the user List component (Sub Component)
-To create the sub component we will provide the command as like as component creating command:
+To create the sub component we will provide the command similar to component creating command:
 ```javascript
 > ng generate component controller/user/user-list --spec false
 ```
-When the command is execute, those file will be created:
+On executing the command, those file will be created:
 
 ```
 create src\app\controller\user\user-list\user-list.component.css
@@ -231,7 +231,7 @@ create src\app\controller\user\user-list\user-list.component.ts
 update src\app\app.module.ts
 ```
 
-Add the ```user-list``` component to ```user``` component. we can modify the ```user.component.html``` to:
+Add the ```user-list``` component to ```user``` component. Now we modify the ```user.component.html``` to:
 
 ```html
 <div>
@@ -279,7 +279,7 @@ export class UserListComponent implements OnInit {
 ```javascript
 > ng g c controller/user/user-add --spec false 
 ```
-This will create ```user-add``` folder and create 3 files and update the ```app.module.ts``` file for add the component to module 
+This will create ```user-add``` folder and create 3 files and update the ```app.module.ts``` file for adding the component to module 
 ```
 create src/app/controller/user/user-add/user-add.component.css (0 bytes)
 create src/app/controller/user/user-add/user-add.component.html (27 bytes)
@@ -318,7 +318,7 @@ Add the ```selector: app-user-add```  component to ```user.component.html``` fil
 ```html
 <app-user-add></app-user-add>
 ```
-#### Design the Add from using bootstrap
+#### Design th page Add by using bootstrap
 ```html
 <div class="container">
   <h1>User Add Form</h1>
@@ -345,8 +345,8 @@ Add the ```selector: app-user-add```  component to ```user.component.html``` fil
   </form>
 </div>
 ```
-I will use the ng model ```[(ngModel)]``` for two way binding for template from to post data to server.
-We also use the ```EventEmitter``` to emit form post data ```user-list``` component to ```user``` component.
+I will use the ng model ```[(ngModel)]``` for two way binding to post data to server.
+We also use the ```EventEmitter``` to emit form post data from ```user-list``` component to ```user``` component.
 ```javascript
 @Output() userCreate:  EventEmitter<any> = new EventEmitter();
 @Input() message: string;
@@ -358,7 +358,7 @@ Emit the function to ```user``` component by ```onSubmit``` method:
      this.userCreate.emit(this.model);
   }
 ```
-At ```user``` component we will ```subscibe``` the create api service at ```user.component.ts```:
+In ```user``` component we will ```subscribe``` the create api service ```user.component.ts```:
 ```javascript
   onSaveUser(user:User): void {
     this.userService.addUser(user).subscribe((result:any) => {
