@@ -12,6 +12,7 @@ export class UserAddComponent implements OnInit {
   @Output() userCreate:  EventEmitter<any> = new EventEmitter();
   @Input() message: string;
   @Input() statusType: string;
+  @Input() showAddForm: boolean;
 
   isValidFormSubmitted = null;
   user = new User(0,'','','');

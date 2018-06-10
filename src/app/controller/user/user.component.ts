@@ -8,7 +8,8 @@ import { User } from '../../models/user.model';
   styles: []
 })
 export class UserComponent implements OnInit {
-
+  showAddForm: boolean = true;
+  showEditForm: boolean = false;
   users: Array<User>;
   message:string;
   statusType: string;
@@ -32,20 +33,26 @@ export class UserComponent implements OnInit {
   }
 
   onEditUser(user:User): void {
+    this.showEditForm= true;
+    this.showAddForm = false;
     this.user = user;
+
   }
 
-  onUpdateUser(user:User): void {
-  
-    this.userService.updateUser(user).subscribe((result:any) => {
+  onUpdateUser(result:any): void {
+    if(result.statusType == "success") {
       this.message = result.message;
       this.statusType = result.statusType;
-      new User(0, '', '', '');
       this.getUsers();
-    }, (error: any) => {
-      this.message = error.message;
-      this.statusType= error.statusType;
-    })
+      this.showEditForm = false;
+      this.showAddForm = true;
+    } else if (result.statusType == "error") {
+      this.message = result.message;
+      this.statusType = result.statusType;
+      this.getUsers();
+      this.showEditForm = true;
+      this.showAddForm = false;
+    } 
   }
 
   getUsers(): void {

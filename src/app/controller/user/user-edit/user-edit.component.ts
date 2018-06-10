@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../../models/user.model';
 import { NgForm, ValidationErrors } from '@angular/forms'
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -11,9 +12,10 @@ export class UserEditComponent implements OnInit {
  @Input() user: User;
  @Input() message:string;
  @Input() statusType: string;
+ @Input() showEditForm: boolean;
  @Output() userUpdateInfo: EventEmitter<any> = new EventEmitter();
  isValidFormSubmitted = false;
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.user = new User(0,'','','')
@@ -24,16 +26,15 @@ export class UserEditComponent implements OnInit {
       if(form.invalid) {
         return;
       }
-
-      debugger
-
       this.isValidFormSubmitted = true;
       this.user = form.value;
-      this.userUpdateInfo.emit(this.user)
-      if(this.statusType =="success") {
-        this.user = new User(0,'','','');
-        form.resetForm();
-      }
+      this.userService.updateUser(this.user).subscribe((result:any) => {
+        this.userUpdateInfo.emit(result)
+      }, (error: any) => {
+        this.userUpdateInfo.emit(error);
+      });
+      
+  }
 
-    }
+
 }

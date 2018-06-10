@@ -12,8 +12,6 @@ export class UserService {
   
   private userApiUrl: string = `${ServiceConfig.apiUrl}users`;
 
-  
-
   getUsers(): Observable<User[]> {
     return this.http.get(this.userApiUrl)
             .map((res: Response) => res.json())
@@ -40,6 +38,5 @@ export class UserService {
                     .map((res:Response) => res.json())
                     .catch((error: any) => Observable.throw(error.json().error || 'server error'))
   }
-
-
 }
+

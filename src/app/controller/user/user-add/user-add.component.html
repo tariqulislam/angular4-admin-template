@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="showAddForm" class="container">
   <h1>User Add Form</h1>
   <form (ngSubmit)= "onSubmit(userForm)" #userForm ="ngForm">
 

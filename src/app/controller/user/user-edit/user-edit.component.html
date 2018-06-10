@@ -1,5 +1,5 @@
 
-<div class="container">
+<div *ngIf="showEditForm" class="container">
     <h1>User Edit Form</h1>
     <form (ngSubmit)= "onSubmit(userEditForm)" #userEditForm ="ngForm">
     
