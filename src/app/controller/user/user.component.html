@@ -1,5 +1,5 @@
 <div>
   <app-user-add [showAddForm]="showAddForm" (userCreate)="onSaveUser($event)"></app-user-add>
-  <app-user-edit [showEditForm]="showEditForm" (userUpdateInfo)="onUpdateUser($event)" [user]="user"></app-user-edit>
+  <app-user-edit (cancleEditUserInfo) = "onCancelUserInfo($event)" [showEditForm]="showEditForm" (userUpdateInfo)="onUpdateUser($event)" [user]="user"></app-user-edit>
   <app-user-list [users] ="users" (userEditInfo)="onEditUser($event)" ></app-user-list>
 </div>

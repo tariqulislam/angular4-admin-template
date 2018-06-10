@@ -21,6 +21,11 @@ export class UserComponent implements OnInit {
     this.getUsers();
   } 
 
+  onCancelUserInfo() : void {
+    this.showEditForm = false;
+    this.showAddForm = true;
+  }
+
   onSaveUser(user:User): void {
     this.userService.addUser(user).subscribe((result:any) => {
         this.message = result.message;
@@ -44,14 +49,10 @@ export class UserComponent implements OnInit {
       this.message = result.message;
       this.statusType = result.statusType;
       this.getUsers();
-      this.showEditForm = false;
-      this.showAddForm = true;
     } else if (result.statusType == "error") {
       this.message = result.message;
       this.statusType = result.statusType;
       this.getUsers();
-      this.showEditForm = true;
-      this.showAddForm = false;
     } 
   }
 

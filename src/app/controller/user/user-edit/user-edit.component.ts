@@ -14,6 +14,7 @@ export class UserEditComponent implements OnInit {
  @Input() statusType: string;
  @Input() showEditForm: boolean;
  @Output() userUpdateInfo: EventEmitter<any> = new EventEmitter();
+ @Output() cancleEditUserInfo: EventEmitter<any> = new EventEmitter();
  isValidFormSubmitted = false;
   constructor(private userService: UserService) { }
 
@@ -34,6 +35,10 @@ export class UserEditComponent implements OnInit {
         this.userUpdateInfo.emit(error);
       });
       
+  }
+
+  handleCancleEditForm () : void {
+    this.cancleEditUserInfo.emit(true);
   }
 
 

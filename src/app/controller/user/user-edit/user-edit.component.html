@@ -1,6 +1,9 @@
 
-<div *ngIf="showEditForm" class="container">
-    <h1>User Edit Form</h1>
+<div *ngIf="showEditForm" class="box">
+  <div class="box-header with-border">
+      User Edit Form
+  </div>
+  <div class="box-body">
     <form (ngSubmit)= "onSubmit(userEditForm)" #userEditForm ="ngForm">
     
       <div class="form-group">
@@ -35,5 +38,7 @@
               </span>
           </div>
           <button type="submit" class="btn btn-success">Update</button>
+          <button (click)="handleCancleEditForm()" class="btn btn-primary">Cancel</button>
     </form>
+  </div>
   </div>

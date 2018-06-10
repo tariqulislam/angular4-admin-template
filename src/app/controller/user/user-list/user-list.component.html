@@ -1,18 +1,26 @@
-<table class="table table-responsive table-bordered">
-  <thead>
-    <th>#</th>
-    <th>First Name:</th>
-    <th>Last Name:</th>
-    <th>Email:</th>
-    <th>Actions</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{user.id}}</td>
-      <td>{{user.firstName}}</td>
-      <td>{{user.lastName}}</td>
-      <td>{{user.email}}</td>
-      <td><button class="btn btn-warning" (click)="getEditData(user)" >Edit</button></td>
-    </tr>
-  </tbody>
-</table>
+<div class="box">
+  <div class="box-header with-border">
+    User List
+  </div>
+<div class="box-body">
+    <table class="table table-responsive table-bordered">
+        <thead>
+          <th>#</th>
+          <th>First Name:</th>
+          <th>Last Name:</th>
+          <th>Email:</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td><button class="btn btn-warning" (click)="getEditData(user)" >Edit</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+</div>

@@ -1,5 +1,8 @@
-<div *ngIf="showAddForm" class="container">
-  <h1>User Add Form</h1>
+<div *ngIf="showAddForm" class="box">
+  <div class="box-header with-border">
+      User Add Form
+  </div>
+   <div class="box-body">
   <form (ngSubmit)= "onSubmit(userForm)" #userForm ="ngForm">
 
     <div class="form-group">
@@ -34,4 +37,5 @@
         </div>
         <button type="submit" class="btn btn-success">Save</button>
   </form>
+</div>
 </div>
