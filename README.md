@@ -425,9 +425,115 @@ addUser(body:User): Observable<Object> {
 ```
 
 ## Edit Data by angular 4
+  
+To create Edit From, i will run the command below
+
+```javascript
+> ng generate component controller/user/user-edit --spec false
+```
+
+```
+output:
 
   create src/app/controller/user/user-edit/user-edit.component.html (28 bytes)
-  create src/app/controller/user/user-edit/user-edit.component.spec.ts (643 bytes)
   create src/app/controller/user/user-edit/user-edit.component.ts (280 bytes)
   create src/app/controller/user/user-edit/user-edit.component.css (0 bytes)
   update src/app/app.module.ts (1274 bytes)
+```
+it will create ```user-edit.component.html```, ```user-edit.component.ts``` and ```user-edit.component.css``` in ```user-edit``` directory:
+
+Then i have to design the ```user-edit``` form, which will follow one way binding for angular ```[ngModel]```:
+```html
+
+<div *ngIf="showEditForm" class="box">
+  <div class="box-header with-border">
+      User Edit Form
+  </div>
+  <div class="box-body">
+    <form (ngSubmit)= "onSubmit(userEditForm)" #userEditForm ="ngForm">
+    
+      <div class="form-group">
+        <label for="name">First Name</label>
+        <input type="hidden" #id="ngModel" id="id" required [(ngModel)] ="user.id" name="id" />
+        <input type="text" #firstName="ngModel" class="form-control" id="firstName" required
+        [ngModel] = "user.firstName" name="firstName" minlength="5"
+        />
+        <span  *ngIf="firstName.errors?.required && userEditForm.submitted && !isValidFormSubmitted" [ngClass] = "'error'">
+          First Name is required
+        </span>
+        <span *ngIf="firstName.errors?.minlength && userEditForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+            Name must be at least 5 characters long.
+        </span>
+      </div>
+      <div class="form-group">
+          <label for="name">Last Name</label>
+          <input type="text" #lastName="ngModel" class="form-control" id="lastName" required 
+          [ngModel] ="user.lastName" name="lastName"
+          />
+          <span *ngIf="lastName.errors?.required && userEditForm.submitted && !isValidFormSubmitted" [ngClass]= "'error'">
+            Last Name is Required
+          </span>
+        </div>
+        <div class="form-group">
+            <label for="name">Email</label>
+            <input type="text" #email="ngModel" class="form-control" id="firstName" required
+            [ngModel] = "user.email" name="email"
+            />
+            <span *ngIf="email.errors?.required && userEditForm.submitted && !isValidFormSubmitted" [ngClass]= "'error'">
+                Email is Required
+              </span>
+          </div>
+          <button type="submit" class="btn btn-success">Update</button>
+          <button (click)="handleCancleEditForm()" class="btn btn-primary">Cancel</button>
+    </form>
+  </div>
+  </div>
+```
+To open the user edit from and hide the user add form, we can use this code statement and pass the selected user values to
+```edit-user``` component:
+
+```javascript
+onEditUser(user:User): void {
+    this.showEditForm= true;
+    this.showAddForm = false;
+    this.user = user;
+}
+```
+
+Update the code in ```user.component.html``` file ```edit-user``` component:
+```html
+<app-user-edit [showEditForm]="showEditForm" (userUpdateInfo)="onUpdateUser($event)" [user]="user"></app-user-edit>
+```
+
+Then write the method wich will update the user and update the parent ```user``` component also
+```javascript
+onSubmit(form: NgForm) {
+  this.isValidFormSubmitted = false;
+  if(form.invalid) {
+    return;
+  }
+  this.isValidFormSubmitted = true;
+  this.user = form.value;
+  this.userService.updateUser(this.user).subscribe((result:any) => {
+    this.userUpdateInfo.emit(result)
+  }, (error: any) => {
+    this.userUpdateInfo.emit(error);
+  });
+      
+}
+```
+To update the ```user``` component, we will add ```onUpdateUser``` function which will be emit by ```userUpdateInfo``` method
+from ```user-edit``` component.
+```javascript
+onUpdateUser(result:any): void {
+    if(result.statusType == "success") {
+      this.message = result.message;
+      this.statusType = result.statusType;
+      this.getUsers();
+    } else if (result.statusType == "error") {
+      this.message = result.message;
+      this.statusType = result.statusType;
+      this.getUsers();
+    } 
+  }
+```
