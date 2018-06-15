@@ -489,8 +489,16 @@ Then i have to design the ```user-edit``` form, which will follow one way bindin
   </div>
   </div>
 ```
+we will use ```showEditForm``` and ```showAddForm``` to hide and show the user add and edit form at user ```user``` component global variable.
+
+```javascript
+  showAddForm: boolean = true;
+  showEditForm: boolean = false;
+```
 To open the user edit from and hide the user add form, we can use this code statement and pass the selected user values to
-```edit-user``` component:
+```edit-user``` component
+
+```this.user = user;``` pass the user information to ```user-edit``` component:
 
 ```javascript
 onEditUser(user:User): void {
@@ -499,7 +507,6 @@ onEditUser(user:User): void {
     this.user = user;
 }
 ```
-
 Update the code in ```user.component.html``` file ```edit-user``` component:
 ```html
 <app-user-edit [showEditForm]="showEditForm" (userUpdateInfo)="onUpdateUser($event)" [user]="user"></app-user-edit>
@@ -522,6 +529,16 @@ onSubmit(form: NgForm) {
       
 }
 ```
+We will use the ```EventEmitter``` of ```@angular/core``` for emit the user is update and update the list of the user to ```parent``` component ```user```. we will add the those ```EventEmitter``` as global variable at ```user-edit.component.ts``` file:
+```javascript
+@Output() userUpdateInfo: EventEmitter<any> = new EventEmitter();
+```
+To pass the ```EventEmitter``` to parent component we will update ```user.component.html``` file:
+```html
+ <app-user-edit  [showEditForm]="showEditForm" (userUpdateInfo)="onUpdateUser($event)" [user]="user"></app-user-edit>
+```
+we will add ```(userUpdateInfo)="onUpdateUser($event)"``` to ```<app-user-edit>``` component:
+
 To update the ```user``` component, we will add ```onUpdateUser``` function which will be emit by ```userUpdateInfo``` method
 from ```user-edit``` component.
 ```javascript
@@ -537,3 +554,22 @@ onUpdateUser(result:any): void {
     } 
   }
 ```
+To cancle the edit form and update the ```user``` component we will update the ```user-edit``` component add the 
+```javascript
+@Output() cancleEditUserInfo: EventEmitter<any> = new EventEmitter();
+```
+EventEmitter to ```user-edit``` component global variable, add the functions
+```javascript
+handleCancleEditForm () : void {
+    this.cancleEditUserInfo.emit(true);
+  }
+
+```
+for Emit the cancle event to ```user``` component.
+Then update ```user.component.html``` for emit the cancle event to ```user``` component using ```(cancleEditUserInfo) = "onCancelUserInfo($event)"```:
+
+```html
+ <app-user-edit (cancleEditUserInfo) = "onCancelUserInfo($event)" [showEditForm]="showEditForm" (userUpdateInfo)="onUpdateUser($event)" [user]="user"></app-user-edit>
+```
+
+
